@@ -22,10 +22,10 @@ first_nb, operand, second_nb = array[0], array[1], array[2]
 
 first_nb_len, operand_len, second_nb_len = len(first_nb), len(operand), len(second_nb)
 
-header = f"{first_nb_len.to_bytes(4, byteorder='big')}{second_nb_len.to_bytes(4, byteorder='big')}{operand_len.to_bytes(4, byteorder='big')}"
+header = first_nb_len.to_bytes(4, byteorder='big') + second_nb_len.to_bytes(4, byteorder='big') + operand_len.to_bytes(4, byteorder='big')
 # print(header)
 
-sequence = header.encode() + calculation.replace(" ", "").encode()
+sequence = header + calculation.replace(" ", "").encode()
 print(sequence)
 
 # On envoie
