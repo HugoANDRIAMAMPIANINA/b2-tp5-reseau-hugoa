@@ -32,9 +32,10 @@ print(sequence)
 s.send(sequence)
 
 # Réception et affichage du résultat
-# s_data = s.recv(1024)
-# print(s_data.decode())
+s_data = s.recv(1024)
+print(s_data.decode())
 s.close()
+exit(0)
 
 # first_nb_byte_length = len(array[0].encode())
 # second_nb_byte_length = len(array[2].encode())
