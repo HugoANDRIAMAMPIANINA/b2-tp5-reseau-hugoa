@@ -10,8 +10,11 @@ while True:
 
     try:
         data = conn.recv(1024)
+        
+        if not data: continue
+        
         print(len(data))
-        print(f"Received : {int.from_bytes(data, 'little')}")
+        print(f"Received : {int.from_bytes(data, 'big')}")
         
     except socket.error:
         print("Error Occured.")

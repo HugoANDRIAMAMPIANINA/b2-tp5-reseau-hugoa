@@ -11,4 +11,4 @@ except:
     print("Pas un nombre")
     exit(0)
     
-s.send(user_number.to_bytes(2, 'little'))
+s.send(user_number.to_bytes(16, 'big'))
