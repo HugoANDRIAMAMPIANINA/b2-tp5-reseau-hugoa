@@ -11,4 +11,5 @@ except:
     print("Pas un nombre")
     exit(0)
     
-s.send(user_number.to_bytes(16, 'big'))
+s.send(user_number.to_bytes(user_number.bit_length(), 'big'))
+print(f"You send the number : {user_number} with {user_number.bit_length()} number of bit")
