@@ -10,14 +10,14 @@ while True:
 
     try:
         # On reçoit le calcul du client
-        first_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
+        first_nb_len = conn.recv(4)
         if not first_nb_len:
             continue
-        second_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
-        operand_len = int.from_bytes(conn.recv(4), byteorder='big')
-        print(first_nb_len, "\n")
-        print(second_nb_len, "\n")
-        print(operand_len, "\n")
+        # second_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
+        # operand_len = int.from_bytes(conn.recv(4), byteorder='big')
+        print(first_nb_len)
+        # print(second_nb_len, "\n")
+        # print(operand_len, "\n")
 
         # print(f"{conn.recv(first_nb_len).decode()} | {conn.recv(operand_len).decode()} | {conn.recv(second_nb_len).decode()}")
         
