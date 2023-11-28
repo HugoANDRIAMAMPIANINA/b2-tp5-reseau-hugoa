@@ -15,7 +15,7 @@ while True:
             continue
         second_nb_len = conn.recv(4).decode()
         operand_len = conn.recv(4).decode()
-        print(first_nb_len, second_nb_len, operand_len)
+        print(f"{first_nb_len}\n{second_nb_len}\n{operand_len}")
 
         # print(f"{conn.recv(first_nb_len).decode()} | {conn.recv(operand_len).decode()} | {conn.recv(second_nb_len).decode()}")
         
