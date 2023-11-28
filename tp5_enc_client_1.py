@@ -2,7 +2,7 @@ import socket
 from re import compile
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(('127.0.0.1', 9999))
+s.connect(('10.1.1.11', 9999))
 
 # Récupération d'une string utilisateur
 calculation = input("Calcul à envoyer: ")
