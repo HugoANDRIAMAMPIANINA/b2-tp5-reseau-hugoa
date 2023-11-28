@@ -19,7 +19,7 @@ while True:
         print(second_nb_len)
         print(operand_len)
 
-        calculation = f"{conn.recv(first_nb_len).decode()} {conn.recv(operand_len).decode()} {conn.recv(second_nb_len).decode()}")
+        calculation = f"{conn.recv(first_nb_len).decode()} {conn.recv(operand_len).decode()} {conn.recv(second_nb_len).decode()}"
         
         # Evaluation et envoi du résultat
         res = eval(calculation)
