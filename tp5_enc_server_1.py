@@ -1,7 +1,6 @@
 import socket
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind(('10.1.1.11', 9999))  
 
 s.listen(1)
@@ -12,6 +11,8 @@ while True:
     try:
         # On reçoit le calcul du client
         first_nb_len = conn.recv(4).decode()
+        if not first_nb_len:
+            continue
         second_nb_len = conn.recv(4).decode()
         operand_len = conn.recv(4).decode()
         print(first_nb_len, second_nb_len, operand_len)
