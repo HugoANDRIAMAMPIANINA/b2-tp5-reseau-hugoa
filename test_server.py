@@ -14,7 +14,8 @@ while True:
         if not data: continue
         
         print(len(data))
-        print(f"Received : {int.from_bytes(data, 'big')}")
+        # print(f"Received : {int.from_bytes(data, 'big')}")
+        print(f"Received : {data.decode()}")
         
     except socket.error:
         print("Error Occured.")
