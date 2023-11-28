@@ -16,14 +16,14 @@ while True:
         second_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
         operand_len = int.from_bytes(conn.recv(4), byteorder='big')
         print(first_nb_len)
-        print(second_nb_len, "\n")
-        print(operand_len, "\n")
+        print(second_nb_len)
+        print(operand_len)
 
-        print(f"{conn.recv(first_nb_len).decode()} | {conn.recv(operand_len).decode()} | {conn.recv(second_nb_len).decode()}")
+        calculation = f"{conn.recv(first_nb_len).decode()} {conn.recv(operand_len).decode()} {conn.recv(second_nb_len).decode()}")
         
         # Evaluation et envoi du résultat
-        # res  = eval(data.decode())
-        # conn.send(str(res).encode())
+        res = eval(calculation)
+        conn.send(str(res).encode())
          
     except socket.error:
         print("Error Occured.")
