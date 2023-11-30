@@ -23,7 +23,7 @@ first_nb, operand, second_nb = int(array[0]), array[1], int(array[2])
 
 first_nb_len, second_nb_len = ceil(first_nb.bit_length()/8.0), ceil(second_nb.bit_length()/8.0)
 
-operand = None
+operand = array[1]
 
 if operand == "+":
     operand = 0
