@@ -32,8 +32,6 @@ match operand:
         operand = 1
     case "*":
         operand = 2
-    case _:
-        operand = 0
 
 
 
