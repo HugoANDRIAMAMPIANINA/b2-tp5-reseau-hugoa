@@ -1,7 +1,7 @@
 import socket
 
 port = 8080
-ip_addr = '127.0.0.1'
+ip_addr = '10.1.1.11'
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((ip_addr, port))  
