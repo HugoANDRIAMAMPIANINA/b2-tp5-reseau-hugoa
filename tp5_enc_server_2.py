@@ -28,9 +28,9 @@ while True:
         second_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
         print(second_nb_len)
         
-        first_nb = int.from_bytes(conn.recv(first_nb_len), byteorder='big')
+        first_nb = int.from_bytes(conn.recv(first_nb_len), byteorder='big', signed=True)
         operand = int.from_bytes(conn.recv(1), byteorder='big')
-        second_nb = int.from_bytes(conn.recv(second_nb_len), byteorder='big')
+        second_nb = int.from_bytes(conn.recv(second_nb_len), byteorder='big', signed=True)
         
         print(second_nb)
         
@@ -51,7 +51,7 @@ while True:
         
         header = res_byte_len.to_bytes(4, byteorder='big')
         
-        sequence = header + res.to_bytes(res_byte_len, byteorder='big')
+        sequence = header + res.to_bytes(res_byte_len, byteorder='big', signed=True)
         
         conn.send(sequence)
          

@@ -39,7 +39,7 @@ else:
 
 header = first_nb_len.to_bytes(4, byteorder='big') + second_nb_len.to_bytes(4, byteorder='big')
 
-byte_calculation = first_nb.to_bytes(first_nb_len, byteorder='big') + operand.to_bytes(1, byteorder='big') + second_nb.to_bytes(second_nb_len, byteorder='big')
+byte_calculation = first_nb.to_bytes(first_nb_len, byteorder='big', signed=True) + operand.to_bytes(1, byteorder='big') + second_nb.to_bytes(second_nb_len, byteorder='big', signed=True)
 
 sequence = header + byte_calculation
 
@@ -48,7 +48,7 @@ s.send(sequence)
 
 # Réception et affichage du résultat
 res_byte_len = int.from_bytes(s.recv(4), byteorder='big')
-res = int.from_bytes(s.recv(res_byte_len), byteorder='big')
+res = int.from_bytes(s.recv(res_byte_len), byteorder='big', signed=True)
 
 print(f"Le résultat du calcul {calculation} est : {res}")
 
