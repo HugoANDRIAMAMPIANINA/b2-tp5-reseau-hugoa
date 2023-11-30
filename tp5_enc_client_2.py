@@ -25,17 +25,12 @@ first_nb_len, second_nb_len = ceil(first_nb.bit_length()/8.0), ceil(second_nb.bi
 
 operand = None
 
-match operand:
-    case "+":
-        operand = 0
-    case "-":
-        operand = 1
-    case "*":
-        operand = 2
-    case _:
-        operand = 0
-
-
+if operand == "+":
+    operand = 0
+elif operand == "-":
+    operand = 1
+else:
+    operand = 2
 
 header = first_nb_len.to_bytes(4, byteorder='big') + second_nb_len.to_bytes(4, byteorder='big') + operand.to_bytes(1, byteorder='big')
 print(header)
