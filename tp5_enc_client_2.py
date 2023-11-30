@@ -49,7 +49,7 @@ s.send(sequence)
 
 # Réception et affichage du résultat
 res_byte_len = int.from_bytes(s.recv(4), byteorder='big')
-res = int.from_bytes(s.recv(res_byte_len), byteorder='big', signed=True)
+res = int.from_bytes(s.recv(res_byte_len), byteorder='big')
 
 print(f"Le résultat du calcul {calculation} est : {res}")
 
