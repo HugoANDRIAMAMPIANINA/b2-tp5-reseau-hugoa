@@ -1,24 +1,28 @@
 import socket
 
+port = 9999
+ip_addr = '10.1.1.11'
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('10.1.1.11', 9999))  
+s.bind((ip_addr, port))  
+
+print(f"server started at port ")
 
 s.listen(1)
-conn, addr = s.accept()
 
 while True:
+    
+    conn, addr = s.accept()
+    
+    print(f"client {addr[0]} is connected")
 
     try:
         # On reçoit le calcul du client
         first_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
         if not first_nb_len:
-            print("coucou tu devrais pas etre là")
             continue
         second_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
         operand_len = int.from_bytes(conn.recv(4), byteorder='big')
-        print(first_nb_len)
-        print(second_nb_len)
-        print(operand_len)
 
         calculation = f"{conn.recv(first_nb_len).decode()} {conn.recv(operand_len).decode()} {conn.recv(second_nb_len).decode()}"
         
