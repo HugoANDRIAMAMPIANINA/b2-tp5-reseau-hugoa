@@ -25,8 +25,15 @@ while True:
         operand_len = int.from_bytes(conn.recv(1), byteorder='big')
         
         first_nb = int.from_bytes(conn.recv(first_nb_len), byteorder='big')
-        operand = conn.recv(operand_len).decode
+        operand = int.from_bytes(conn.recv(operand_len), byteorder='big')
         second_nb = int.from_bytes(conn.recv(second_nb_len), byteorder='big')
+        
+        if operand == 0:
+            operand = "+"
+        elif operand == 1:
+            operand = "-"
+        else:
+            operand = "*"
 
         calculation = f"{first_nb} {operand} {second_nb}"
         
