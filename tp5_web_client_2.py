@@ -5,6 +5,6 @@ s.connect(('10.1.1.11', 8080))
 
 user_input = input()
 
-s.send(user_input)
+s.send(user_input.encode('utf-8'))
 
 print(s.recv(1024).decode('utf-8'))
