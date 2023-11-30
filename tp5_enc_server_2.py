@@ -57,9 +57,9 @@ while True:
         sequence = header + res.to_bytes(res_byte_len, byteorder='big')
         
         conn.send(sequence)
-        conn.close()
          
     except socket.error:
         print("Error Occured.")
         break
     
+conn.close()
