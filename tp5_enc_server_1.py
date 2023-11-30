@@ -12,6 +12,7 @@ while True:
         # On reçoit le calcul du client
         first_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
         if not first_nb_len:
+            print("coucou tu devrais pas etre là")
             continue
         second_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
         operand_len = int.from_bytes(conn.recv(4), byteorder='big')
