@@ -22,9 +22,8 @@ while True:
             continue
         
         request = conn.recv(user_input_byte_len).decode('utf-8')
-        print(request)
         
-        if request == "GET /":
+        if request == "GET /" or request == "/":
             response = "HTTP/1.0 200 OK\n\n<h1>Hello je suis un serveur HTTP</h1>"
             response_len = int.to_bytes(len(response), 4, byteorder='big')
             
