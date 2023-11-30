@@ -32,6 +32,8 @@ while True:
             sequence = header + response.encode('utf-8')
             
             conn.send(sequence)
+        else:
+            continue
         
     except socket.error:
         print("Error Occured.")
