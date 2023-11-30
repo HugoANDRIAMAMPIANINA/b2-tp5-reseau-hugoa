@@ -17,7 +17,9 @@ while True:
     print(f"Client {addr[0]} is connected")
     
     try:
-        user_input_byte_len = int.from_bytes(conn.recv(4), byteorder='big')
+        input_received = conn.recv(4)
+        print(conn.recv(4).decode())
+        user_input_byte_len = int.from_bytes(input_received, byteorder='big')
         if not user_input_byte_len:
             continue
         
