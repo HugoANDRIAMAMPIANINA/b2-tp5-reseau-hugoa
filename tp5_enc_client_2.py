@@ -8,7 +8,7 @@ s.connect(('10.1.1.11', 9999))
 # Récupération d'une string utilisateur
 calculation = input("Calcul à envoyer: ")
 
-is_calculation_valid_pattern = compile('^(\+|-)?([0-9]){1,10} (\+|-|\*) (\+|-)?([0-9]){1,10}$')
+is_calculation_valid_pattern = compile('^(\+)?([0-9]){1,10} (\+|-|\*) (\+)?([0-9]){1,10}$')
 
 if not is_calculation_valid_pattern.match(calculation):
     raise TypeError("Veuillez saisir un calcul valide (addition, soustraction ou multiplication) : choisir des nombres entiers compris inférieurs à 4294967295")
@@ -49,8 +49,17 @@ s.send(sequence)
 
 # Réception et affichage du résultat
 res_byte_len = int.from_bytes(s.recv(4), byteorder='big')
-res = int.from_bytes(s.recv(res_byte_len), byteorder='big')
 
+is_negative = None
+if int.from_bytes(s.recv(1), byteorder='big') == 1:
+    is_negative = True
+else:
+    is_negative = False
+    
+res = int.from_bytes(s.recv(res_byte_len), byteorder='big')
+if is_negative:
+    res = -res
+    
 print(f"Le résultat du calcul {calculation} est : {res}")
 
 s.close()

@@ -51,6 +51,11 @@ while True:
         
         header = res_byte_len.to_bytes(4, byteorder='big')
         
+        if res < 0:
+            header += int.to_bytes(1,1, byteorder='big')
+        else:
+            header += int.to_bytes(0,1, byteorder='big')
+        
         sequence = header + res.to_bytes(res_byte_len, byteorder='big')
         
         conn.send(sequence)
