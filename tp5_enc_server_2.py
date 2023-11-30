@@ -20,19 +20,15 @@ while True:
     try:
         # On reçoit le calcul du client
         first_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
-        print(first_nb_len)
         
         if not first_nb_len:
             continue
         
         second_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
-        print(second_nb_len)
         
         first_nb = int.from_bytes(conn.recv(first_nb_len), byteorder='big')
         operand = int.from_bytes(conn.recv(1), byteorder='big')
         second_nb = int.from_bytes(conn.recv(second_nb_len), byteorder='big')
-        
-        print(second_nb)
         
         if operand == 0:
             operand = "+"
@@ -42,7 +38,6 @@ while True:
             operand = "*"
 
         calculation = f"{first_nb} {operand} {second_nb}"
-        print(calculation)
         
         # Evaluation et envoi du résultat
         res: int = eval(calculation)

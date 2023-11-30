@@ -11,12 +11,12 @@ calculation = input("Calcul à envoyer: ")
 is_calculation_valid_pattern = compile('^(\+)?([0-9]){1,10} (\+|-|\*) (\+)?([0-9]){1,10}$')
 
 if not is_calculation_valid_pattern.match(calculation):
-    raise TypeError("Veuillez saisir un calcul valide (addition, soustraction ou multiplication) : choisir des nombres entiers compris inférieurs à 4294967295")
+    raise TypeError("Veuillez saisir un calcul valide (addition, soustraction ou multiplication) : choisir des nombres entiers compris entre 0 et 4294967294")
 
 array = calculation.split(" ")
 
 if int(array[0]) >= 4294967295  or int(array[2]) >= 4294967295:
-    print("Les nombres saisis doivent être inférieur à 4294967295")
+    print("Les nombres saisis doivent être compris entre 0 et 4294967294")
     exit(0)
     
 first_nb, operand, second_nb = int(array[0]), array[1], int(array[2])
