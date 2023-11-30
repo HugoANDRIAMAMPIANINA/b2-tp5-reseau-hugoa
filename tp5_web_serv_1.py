@@ -26,7 +26,7 @@ while True:
         
         if request == "GET /":
             response = "HTTP/1.0 200 OK\n\n<h1>Hello je suis un serveur HTTP</h1>"
-            response_len = int.to_bytes(len(response_len), 4, byteorder='big')
+            response_len = int.to_bytes(len(response), 4, byteorder='big')
             
             header = response_len
             sequence = header + response.encode('utf-8')
