@@ -39,6 +39,7 @@ while True:
             operand = "*"
 
         calculation = f"{first_nb} {operand} {second_nb}"
+        print(calculation)
         
         # Evaluation et envoi du résultat
         res: int = eval(calculation)
