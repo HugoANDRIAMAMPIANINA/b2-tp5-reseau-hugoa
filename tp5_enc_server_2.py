@@ -1,4 +1,5 @@
 import socket
+from math import ceil
 
 port = 9999
 ip_addr = '10.1.1.11'
@@ -48,11 +49,17 @@ while True:
         
         # Evaluation et envoi du résultat
         res: int = eval(calculation)
-        print(res)
-        # conn.send(str(res).encode())
+        
+        res_byte_len = ceil(res.bit_length()/8.0)
+        
+        header = res_byte_len.to_bytes(4, byteorder='big')
+        
+        sequence = header + res.to_bytes(res_byte_len, byteorder='big')
+        
+        conn.send(sequence)
+        conn.close()
          
     except socket.error:
         print("Error Occured.")
         break
-
-conn.close()
+    
