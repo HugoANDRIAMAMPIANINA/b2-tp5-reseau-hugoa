@@ -1,7 +1,7 @@
 import socket
 
 port = 8080
-ip_addr = '10.1.1.11'
+ip_addr = '127.0.0.1'
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((ip_addr, port))  
@@ -17,27 +17,23 @@ while True:
     print(f"Client {addr[0]} is connected")
     
     try:
-        input_received = conn.recv(4)
-        print(conn.recv(4).decode())
-        user_input_byte_len = int.from_bytes(input_received, byteorder='big')
-        if not user_input_byte_len:
+        request = conn.recv(1024).decode('utf-8')
+        
+        if not request:
             continue
         
-        request = conn.recv(user_input_byte_len).decode('utf-8')
+        request_elements = request.split(" ")
+        method, uri = request_elements[0], request_elements[1]
+        print(method, uri)
         
-        if request == "GET /" or request == "/":
-            response = "HTTP/1.0 200 OK\n\n<h1>Hello je suis un serveur HTTP</h1>"
-            response_len = int.to_bytes(len(response), 4, byteorder='big')
-            
-            header = response_len
-            sequence = header + response.encode('utf-8')
-            
-            conn.send(sequence)
+        if method == "GET":
+            if uri == "/":
+                response = "HTTP/1.0 200 OK\n\n<h1>Hello je suis un serveur HTTP</h1>"
+                conn.send(response.encode('utf-8'))
+                conn.close()
         else:
             continue
         
     except socket.error:
         print("Error Occured.")
         break
-
-conn.close()
