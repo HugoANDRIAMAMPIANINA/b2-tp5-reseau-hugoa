@@ -2,7 +2,7 @@ import socket
 from os.path import isfile, exists
 
 
-def file_exists(file_name: str) -> str|bool:
+def file_exists(file_name: str) -> bool:
     if exists(f"./templates/{file_name}") and isfile(f"./templates/{file_name}"):
         return True
     return False
