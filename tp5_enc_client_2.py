@@ -40,7 +40,7 @@ else:
 
 header = first_nb_len.to_bytes(4, byteorder='big') + second_nb_len.to_bytes(4, byteorder='big')
 
-byte_calculation = first_nb.to_bytes(first_nb_len*2, byteorder='big', signed=True) + operand.to_bytes(1, byteorder='big') + second_nb.to_bytes(second_nb_len*2, byteorder='big', signed=True)
+byte_calculation = first_nb.to_bytes(first_nb_len, byteorder='big') + operand.to_bytes(1, byteorder='big') + second_nb.to_bytes(second_nb_len, byteorder='big')
 
 sequence = header + byte_calculation
 
