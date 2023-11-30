@@ -31,6 +31,8 @@ while True:
         operand = int.from_bytes(conn.recv(operand_len), byteorder='big')
         second_nb = int.from_bytes(conn.recv(second_nb_len), byteorder='big')
         
+        print(second_nb)
+        
         if operand == 0:
             operand = "+"
         elif operand == 1:
