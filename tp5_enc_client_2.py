@@ -22,6 +22,7 @@ if int(array[0]) >= 4294967295  or int(array[2]) >= 4294967295:
 first_nb, operand, second_nb = int(array[0]), array[1], int(array[2])
 
 first_nb_len, second_nb_len = ceil(first_nb.bit_length()/8.0), ceil(second_nb.bit_length()/8.0)
+print(first_nb_len, second_nb_len)
 
 if first_nb == 0:
     first_nb_len = 1
