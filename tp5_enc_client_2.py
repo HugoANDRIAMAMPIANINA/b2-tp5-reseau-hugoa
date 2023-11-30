@@ -22,7 +22,11 @@ if int(array[0]) >= 4294967295  or int(array[2]) >= 4294967295:
 first_nb, operand, second_nb = int(array[0]), array[1], int(array[2])
 
 first_nb_len, second_nb_len = ceil(first_nb.bit_length()/8.0), ceil(second_nb.bit_length()/8.0)
-print(f"f nb byte {first_nb_len}\ns nb byte {second_nb_len}")
+
+if first_nb == 0:
+    first_nb_len = 1
+if second_nb == 0:
+    second_nb_len = 1
 
 operand = array[1]
 
@@ -34,13 +38,10 @@ else:
     operand = 2
 
 header = first_nb_len.to_bytes(4, byteorder='big') + second_nb_len.to_bytes(4, byteorder='big')
-print(header)
 
-calculation = first_nb.to_bytes(first_nb_len, byteorder='big') + operand.to_bytes(1, byteorder='big') + second_nb.to_bytes(second_nb_len, byteorder='big')
-print(calculation)
+byte_calculation = first_nb.to_bytes(first_nb_len, byteorder='big') + operand.to_bytes(1, byteorder='big') + second_nb.to_bytes(second_nb_len, byteorder='big')
 
-sequence = header + calculation
-print(sequence)
+sequence = header + byte_calculation
 
 # On envoie
 s.send(sequence)
