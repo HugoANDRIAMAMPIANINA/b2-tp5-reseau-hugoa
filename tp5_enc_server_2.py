@@ -53,6 +53,7 @@ while True:
         
         if res < 0:
             header += int.to_bytes(1,1, byteorder='big')
+            res = abs(res)
         else:
             header += int.to_bytes(0,1, byteorder='big')
         

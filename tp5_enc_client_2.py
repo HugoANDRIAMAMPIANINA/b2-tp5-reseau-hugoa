@@ -58,7 +58,7 @@ else:
     
 res = int.from_bytes(s.recv(res_byte_len), byteorder='big')
 if is_negative:
-    res = -res
+    res = -abs(res)
     
 print(f"Le résultat du calcul {calculation} est : {res}")
 
