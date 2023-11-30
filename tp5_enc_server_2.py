@@ -20,10 +20,13 @@ while True:
         # On reçoit le calcul du client
         first_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
         print(first_nb_len)
+        
         if not first_nb_len:
             continue
+        
         second_nb_len = int.from_bytes(conn.recv(4), byteorder='big')
         print(second_nb_len)
+        
         operand_len = int.from_bytes(conn.recv(1), byteorder='big')
         print(operand_len)
         
@@ -33,9 +36,9 @@ while True:
         
         print(second_nb)
         
-        if operand == 0:
+        if operand == 1:
             operand = "+"
-        elif operand == 1:
+        elif operand == 2:
             operand = "-"
         else:
             operand = "*"

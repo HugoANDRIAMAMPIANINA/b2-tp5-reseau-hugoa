@@ -27,11 +27,11 @@ print(f"f nb byte {first_nb_len}\ns nb byte {second_nb_len}")
 operand = array[1]
 
 if operand == "+":
-    operand = 0
-elif operand == "-":
     operand = 1
-else:
+elif operand == "-":
     operand = 2
+else:
+    operand = 3
 
 header = first_nb_len.to_bytes(4, byteorder='big') + second_nb_len.to_bytes(4, byteorder='big') + operand.to_bytes(1, byteorder='big')
 print(header)
