@@ -51,7 +51,7 @@ while True:
         
         header = res_byte_len.to_bytes(4, byteorder='big')
         
-        sequence = header + res.to_bytes(res_byte_len, byteorder='big', signed=True)
+        sequence = header + res.to_bytes(res_byte_len*2, byteorder='big', signed=True)
         
         conn.send(sequence)
          
