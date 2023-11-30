@@ -35,7 +35,7 @@ else:
 header = first_nb_len.to_bytes(4, byteorder='big') + second_nb_len.to_bytes(4, byteorder='big') + operand.to_bytes(1, byteorder='big')
 print(header)
 
-calculation = first_nb.to_bytes(first_nb_len) + operand.to_bytes(1) + second_nb.to_bytes(second_nb_len)
+calculation = first_nb.to_bytes(first_nb_len, byteorder='big') + operand.to_bytes(1, byteorder='big') + second_nb.to_bytes(second_nb_len, byteorder='big')
 print(calculation)
 
 sequence = header + calculation
