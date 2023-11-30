@@ -1,24 +1,40 @@
-# Python 3 server example
-from http.server import BaseHTTPRequestHandler, HTTPServer
+import socket
 
-host_name = "10.1.1.11"
-server_port = 8080
+port = 8080
+ip_addr = '10.1.1.11'
 
-class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.end_headers()
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((ip_addr, port))  
+
+print(f"Server started at port :{port}")
+
+s.listen(1)
+
+while True:
+    
+    conn, addr = s.accept()
+    
+    print(f"Client {addr[0]} is connected")
+    
+    try:
+        user_input_byte_len = int.from_bytes(conn.recv(4), byteorder='big')
+        if not user_input_byte_len:
+            continue
         
-        index_content = "<h1>Hello je suis un serveur HTTP</h1>"
-        self.wfile.write(index_content.encode("utf-8"))
+        request = conn.recv(user_input_byte_len).decode('utf-8')
+        print(request)
         
-def run():
-    port = 8080
-    server_address = ('', port)
-    web_server = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    print(f"Serveur lancé sur le port :{port}")
-    web_server.serve_forever()
+        if request == "GET /":
+            response = "HTTP/1.0 200 OK\n\n<h1>Hello je suis un serveur HTTP</h1>"
+            response_len = int.to_bytes(len(response_len), 4, byteorder='big')
+            
+            header = response_len
+            sequence = header + response.encode('utf-8')
+            
+            conn.send(sequence)
+        
+    except socket.error:
+        print("Error Occured.")
+        break
 
-if __name__ == '__main__':
-    run()
+conn.close()
