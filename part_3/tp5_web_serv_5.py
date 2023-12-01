@@ -87,7 +87,7 @@ while True:
                         http_response = get_byte_file_content(file_name)
                         conn.send(b"HTTP/1.0 200 OK\n")
                         if file_ext == "mp3":
-                            conn.send(f"Content-Type: audio/{file_ext}\n".encode('utf-8'))
+                            conn.send(f"Content-Type: audio/mpeg\n".encode('utf-8'))
                         else:
                             conn.send(f"Content-Type: image/{file_ext}\n".encode('utf-8'))
                         conn.send(b"\n")
